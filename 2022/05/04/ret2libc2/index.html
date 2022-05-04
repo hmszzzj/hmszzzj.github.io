@@ -16,21 +16,34 @@
   <meta name="author" content="Hongmiaosheng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言乍暖还寒时候虽说的是深秋，用在四月倒也不差，一年中最喜的就是四月，最不喜的是刚过去的这个四月。 乍暖还寒一：“春天该很好，你若尚在场”。自知晓张国荣这个名字来，一直被他温暖、鼓励以及深深影响着。 “让我到外面闯一下，就选头破血流，我也一定要闯出个名堂”，哥哥在89退出歌坛演唱会上这样说道，半年的考研时光，这句话无数次在我想要放弃的时候支撑着我。 前些天翻阅以往微博，看到以前自己也曾说过类似于，">
+    <meta name="description" content="题目分析1、静态分析 ​		*当前程序为32位  ​		*溢出点为gets()函数  ​		*仅开启栈不可执行  ​		*存在system函数以及‘&#x2F;bin&#x2F;sh’字符串   2、动态分析 ​		*判断溢出点偏移位置 ​		a、随机生成长度200的字符串  ​		b、利用gdb调试工具打开文件，并在main函数处设置断点   ​		c、输入字符串，获取溢出偏移量   3、攻击代">
 <meta property="og:type" content="article">
-<meta property="og:title" content="四月">
-<meta property="og:url" content="http://example.com/2022/05/01/%E5%9B%9B%E6%9C%88/index.html">
+<meta property="og:title" content="ret2libc2">
+<meta property="og:url" content="http://example.com/2022/05/04/ret2libc2/index.html">
 <meta property="og:site_name" content="热心网友小洪">
-<meta property="og:description" content="前言乍暖还寒时候虽说的是深秋，用在四月倒也不差，一年中最喜的就是四月，最不喜的是刚过去的这个四月。 乍暖还寒一：“春天该很好，你若尚在场”。自知晓张国荣这个名字来，一直被他温暖、鼓励以及深深影响着。 “让我到外面闯一下，就选头破血流，我也一定要闯出个名堂”，哥哥在89退出歌坛演唱会上这样说道，半年的考研时光，这句话无数次在我想要放弃的时候支撑着我。 前些天翻阅以往微博，看到以前自己也曾说过类似于，">
+<meta property="og:description" content="题目分析1、静态分析 ​		*当前程序为32位  ​		*溢出点为gets()函数  ​		*仅开启栈不可执行  ​		*存在system函数以及‘&#x2F;bin&#x2F;sh’字符串   2、动态分析 ​		*判断溢出点偏移位置 ​		a、随机生成长度200的字符串  ​		b、利用gdb调试工具打开文件，并在main函数处设置断点   ​		c、输入字符串，获取溢出偏移量   3、攻击代">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-01T12:24:59.000Z">
-<meta property="article:modified_time" content="2022-05-04T00:42:08.274Z">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503104357552.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503104501626.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503104550249.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503104810343.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503104853849.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503105138710.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503105410156.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503105508276.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503105557402.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503105648719.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503105825397.png">
+<meta property="og:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503105926085.png">
+<meta property="article:published_time" content="2022-05-04T00:57:27.000Z">
+<meta property="article:modified_time" content="2022-05-04T01:00:14.700Z">
 <meta property="article:author" content="Hongmiaosheng">
-<meta property="article:tag" content="记">
+<meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:/Users/X1/hexo-hms/source_posts/ret2libc2/image-20220503104357552.png">
   
   
-  <title>四月 - 热心网友小洪</title>
+  <title>ret2libc2 - 热心网友小洪</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +189,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="四月">
+            <span class="h2" id="subtitle" title="ret2libc2">
               
             </span>
 
@@ -186,8 +199,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-01 20:24" pubdate>
-        2022年5月1日 晚上
+      <time datetime="2022-05-04 08:57" pubdate>
+        2022年5月4日 早上
       </time>
     </span>
   
@@ -197,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      671 字
+      175 字
     </span>
   
 
@@ -206,7 +219,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      2 分钟
     </span>
   
 
@@ -243,21 +256,33 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">四月</h1>
+            <h1 style="display: none">ret2libc2</h1>
             
             <div class="markdown-body">
-              <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p><strong>乍暖还寒</strong>时候虽说的是深秋，用在四月倒也不差，一年中最喜的就是四月，最不喜的是刚过去的这个四月。</p>
-<h4 id="乍暖还寒一："><a href="#乍暖还寒一：" class="headerlink" title="乍暖还寒一："></a>乍暖还寒一：</h4><p>“春天该很好，你若尚在场”。自知晓张国荣这个名字来，一直被他温暖、鼓励以及深深影响着。</p>
-<p>“让我到外面闯一下，就选头破血流，我也一定要闯出个名堂”，哥哥在89退出歌坛演唱会上这样说道，半年的考研时光，这句话无数次在我想要放弃的时候支撑着我。</p>
-<p>前些天翻阅以往微博，看到以前自己也曾说过类似于，“愿你对人没有三六九等”之类的话。我想，我是一个温柔的人，从小便是。这两句话我现今依旧在践行，对上菜的阿姨说谢谢，帮因不识字被售票员欺负的老爷爷据理力争，很多时候我都在想，如果是leslie，他一定会这样做吧。可是这个世界又很奇怪，他们会把我的善意当作冒犯， 又或者认为我有所图，真的太怪了。</p>
-<p>以上是暖，纵身一跃是寒。19年了，也该是少年的模样了。</p>
-<h4 id="乍暖还寒二："><a href="#乍暖还寒二：" class="headerlink" title="乍暖还寒二："></a>乍暖还寒二：</h4><p>“你他妈就是个虚伪的小人”。这大概是这些年来听过最受伤的一句话了。</p>
-<p>其实我相信每个人都是善良的人，只是每个人善良的方式不同。所以，当我坐在麻将桌上听到好朋友对我说的这句话的时候，虽然生气，倒也没有歇斯底里地争吵，或许这也是让他觉得我更虚伪的地方吧，明明很生气了，却装出一副不在意的样子。</p>
-<p>一个月过去，我们又能向以前一样坐在桌子上喝着啤酒激情澎湃，聊着人生心比天高，可当我不经意间想到这句话，心中还是会有一丝丝寒意。</p>
-<h4 id="乍暖还寒三："><a href="#乍暖还寒三：" class="headerlink" title="乍暖还寒三："></a>乍暖还寒三：</h4><p>距离告别研一还剩一个多月时间，我有几个问题想问自己：</p>
-<p>​		1、真的在朝着自己的目标在努力吗？或者目标还明确吗？</p>
-<p>​		2、现在还自信吗？还乐观吗？</p>
-<p>​		3、离家很远，有把自己照顾好吗？</p>
+              <h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>1、静态分析</p>
+<p>​		*当前程序为32位</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503104357552.png" srcset="/img/loading.gif" lazyload alt="image-20220503104357552"></p>
+<p>​		*溢出点为gets()函数</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503104501626.png" srcset="/img/loading.gif" lazyload alt="image-20220503104501626"></p>
+<p>​		*仅开启栈不可执行</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503104550249.png" srcset="/img/loading.gif" lazyload alt="image-20220503104550249"></p>
+<p>​		*存在system函数以及‘&#x2F;bin&#x2F;sh’字符串</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503104810343.png" srcset="/img/loading.gif" lazyload alt="image-20220503104810343"></p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503104853849.png" srcset="/img/loading.gif" lazyload alt="image-20220503104853849"></p>
+<p>2、动态分析</p>
+<p>​		*判断溢出点偏移位置</p>
+<p>​		a、随机生成长度200的字符串</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503105138710.png" srcset="/img/loading.gif" lazyload alt="image-20220503105138710"></p>
+<p>​		b、利用gdb调试工具打开文件，并在main函数处设置断点</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503105410156.png" srcset="/img/loading.gif" lazyload alt="image-20220503105410156"></p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503105508276.png" srcset="/img/loading.gif" lazyload alt="image-20220503105508276"></p>
+<p>​		c、输入字符串，获取溢出偏移量</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503105557402.png" srcset="/img/loading.gif" lazyload alt="image-20220503105557402"></p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503105648719.png" srcset="/img/loading.gif" lazyload alt="image-20220503105648719"></p>
+<p>3、攻击代码</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503105825397.png" srcset="/img/loading.gif" lazyload alt="image-20220503105825397"></p>
+<p>4、成功获得系统权限</p>
+<p><img src="C:\Users\X1\hexo-hms\source_posts\ret2libc2\image-20220503105926085.png" srcset="/img/loading.gif" lazyload alt="image-20220503105926085"></p>
 
             </div>
             <hr>
@@ -268,7 +293,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%AE%B0/">记</a>
+                      <a class="hover-with-bg" href="/tags/pwn/">pwn</a>
                     
                   </div>
                 
@@ -285,18 +310,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/04/ret2libc2/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ret2libc2</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/28/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C%E9%97%AE%E9%A2%98/">
-                        <span class="hidden-mobile">最大子序列和问题</span>
+                      <a href="/2022/05/01/%E5%9B%9B%E6%9C%88/">
+                        <span class="hidden-mobile">四月</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
