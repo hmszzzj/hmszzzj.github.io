@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="ret2libc2">
 <meta property="og:url" content="http://example.com/2022/05/04/ret2libc2/index.html">
-<meta property="og:site_name" content="热心网友小洪">
+<meta property="og:site_name" content="Hi~热心网友小洪">
 <meta property="og:description" content="¶题目分析 1、静态分析 ​		*当前程序为32位  ​		*溢出点为gets()函数  ​		*仅开启栈不可执行 ​		 *存在system函数以及‘&#x2F;bin&#x2F;sh’字符串   2、动态分析 ​		*判断溢出点偏移位置 ​		a、随机生成长度200的字符串  ​		b、利用gdb调试工具打开文件，并在main函数处设置断点   ​		c、输入字符串，获取溢出偏移量   3、攻击代码  4、成功获">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/05/04/ret2libc2/image-20220503104357552.png">
@@ -43,7 +43,7 @@
 <meta name="twitter:image" content="http://example.com/2022/05/04/ret2libc2/image-20220503104357552.png">
   
   
-  <title>ret2libc2 - 热心网友小洪</title>
+  <title>ret2libc2 - Hi~热心网友小洪</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -92,7 +92,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>热心网友小洪</strong>
+      <strong>小洪&#39;s blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -317,6 +317,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/05/04/DDPG%E7%AE%97%E6%B3%95%E5%88%9D%E6%AD%A5%E7%90%86%E8%A7%A3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DDPG算法初步理解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
