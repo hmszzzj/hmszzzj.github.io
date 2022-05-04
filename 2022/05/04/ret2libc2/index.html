@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://example.com/2022/05/04/ret2libc2/image-20220503105825397.png">
 <meta property="og:image" content="http://example.com/2022/05/04/ret2libc2/image-20220503105926085.png">
 <meta property="article:published_time" content="2022-05-04T00:57:27.000Z">
-<meta property="article:modified_time" content="2022-05-04T01:09:48.651Z">
+<meta property="article:modified_time" content="2022-05-04T01:10:58.804Z">
 <meta property="article:author" content="Hongmiaosheng">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary_large_image">
@@ -261,38 +261,38 @@
             <div class="markdown-body">
               <h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>1、静态分析</p>
 <p>​		*当前程序为32位</p>
-<img src="/2022/05/04/ret2libc2/image-20220503104357552.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503104357552.png" srcset="/img/loading.gif" lazyload class="" width="1">
 
 <p>​		*溢出点为gets()函数</p>
-<img src="/2022/05/04/ret2libc2/image-20220503104501626.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503104501626.png" srcset="/img/loading.gif" lazyload class="" width="2">
 
 <p>​		*仅开启栈不可执行</p>
-<p>​		<img src="/2022/05/04/ret2libc2/image-20220503104550249.png" srcset="/img/loading.gif" lazyload class=""></p>
+<p>​		<img src="/2022/05/04/ret2libc2/image-20220503104550249.png" srcset="/img/loading.gif" lazyload class="" width="3"></p>
 <p>*存在system函数以及‘&#x2F;bin&#x2F;sh’字符串</p>
-<img src="/2022/05/04/ret2libc2/image-20220503104810343.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503104810343.png" srcset="/img/loading.gif" lazyload class="" width="4">
 
-<img src="/2022/05/04/ret2libc2/image-20220503104853849.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503104853849.png" srcset="/img/loading.gif" lazyload class="" width="5">
 
 <p>2、动态分析</p>
 <p>​		*判断溢出点偏移位置</p>
 <p>​		a、随机生成长度200的字符串</p>
-<img src="/2022/05/04/ret2libc2/image-20220503105138710.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503105138710.png" srcset="/img/loading.gif" lazyload class="" width="6">
 
 <p>​		b、利用gdb调试工具打开文件，并在main函数处设置断点</p>
-<img src="/2022/05/04/ret2libc2/image-20220503105410156.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503105410156.png" srcset="/img/loading.gif" lazyload class="" width="7">
 
-<img src="/2022/05/04/ret2libc2/image-20220503105508276.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503105508276.png" srcset="/img/loading.gif" lazyload class="" width="8">
 
 <p>​		c、输入字符串，获取溢出偏移量</p>
-<img src="/2022/05/04/ret2libc2/image-20220503105557402.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503105557402.png" srcset="/img/loading.gif" lazyload class="" width="9">
 
-<img src="/2022/05/04/ret2libc2/image-20220503105648719.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503105648719.png" srcset="/img/loading.gif" lazyload class="" width="10">
 
 <p>3、攻击代码</p>
-<img src="/2022/05/04/ret2libc2/image-20220503105825397.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503105825397.png" srcset="/img/loading.gif" lazyload class="" width="11">
 
 <p>4、成功获得系统权限</p>
-<img src="/2022/05/04/ret2libc2/image-20220503105926085.png" srcset="/img/loading.gif" lazyload class="">
+<img src="/2022/05/04/ret2libc2/image-20220503105926085.png" srcset="/img/loading.gif" lazyload class="" width="12">
 
             </div>
             <hr>
