@@ -16,20 +16,21 @@
   <meta name="author" content="Hongmiaosheng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="哈希表例题、给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个 不同的索引 i 和 j ，满足 nums[i] &#x3D;&#x3D; nums[j] 且 abs(i - j) &lt;&#x3D; k 。如果存在，返回 true ；否则，返回 false 。 算法、可以使用哈希表记录每个元素的最大下标。 123456789101112131415161718192021222">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2022/05/03/hello-world/index.html">
+<meta property="og:title" content="C语言哈希表">
+<meta property="og:url" content="http://example.com/2022/03/22/C%E8%AF%AD%E8%A8%80%E5%93%88%E5%B8%8C%E8%A1%A8/index.html">
 <meta property="og:site_name" content="热心网友小洪">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="哈希表例题、给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个 不同的索引 i 和 j ，满足 nums[i] &#x3D;&#x3D; nums[j] 且 abs(i - j) &lt;&#x3D; k 。如果存在，返回 true ；否则，返回 false 。 算法、可以使用哈希表记录每个元素的最大下标。 123456789101112131415161718192021222">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-03T11:35:25.321Z">
-<meta property="article:modified_time" content="2022-05-03T11:35:25.321Z">
+<meta property="article:published_time" content="2022-03-22T00:44:57.000Z">
+<meta property="article:modified_time" content="2022-05-04T00:46:09.404Z">
 <meta property="article:author" content="Hongmiaosheng">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>Hello World - 热心网友小洪</title>
+  <title>C语言哈希表 - 热心网友小洪</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -175,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello World">
+            <span class="h2" id="subtitle" title="C语言哈希表">
               
             </span>
 
@@ -185,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-03 19:35" pubdate>
-        2022年5月3日 晚上
+      <time datetime="2022-03-22 08:44" pubdate>
+        2022年3月22日 早上
       </time>
     </span>
   
@@ -196,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      1.6k 字
     </span>
   
 
@@ -205,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      14 分钟
     </span>
   
 
@@ -242,28 +243,36 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">C语言哈希表</h1>
             
             <div class="markdown-body">
-              <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+              <h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p><strong>例题、</strong>给你一个整数数组 nums 和一个整数 k ，判断数组中是否存在两个 不同的索引 i 和 j ，满足 nums[i] &#x3D;&#x3D; nums[j] 且 abs(i - j) &lt;&#x3D; k 。如果存在，返回 true ；否则，返回 false 。</p>
+<p><strong>算法、</strong>可以使用哈希表记录每个元素的最大下标。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><pre><code class="hljs C"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTable</span>&#123;</span><br>    <span class="hljs-type">int</span> key;<br>    <span class="hljs-type">int</span> val;<br>    UT_hash_handle hh;<br>&#125;;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">addItem</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> hashTable **obj, <span class="hljs-type">int</span> key, <span class="hljs-type">int</span> val)</span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTable</span>* <span class="hljs-title">tmp</span>;</span><br>    tmp = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">struct</span> hashTable));<br>    tmp-&gt;key = key;<br>    tmp-&gt;val = val;<br>    HASH_ADD_INT(*obj, key, tmp);<br>&#125;<br><br><span class="hljs-keyword">struct</span> hashTable* <span class="hljs-title function_">findItem</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> hashTable **obj, <span class="hljs-type">int</span> key)</span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTable</span>* <span class="hljs-title">tmp</span>;</span><br>    HASH_FIND_INT(*obj, &amp;key, tmp);<br>    <span class="hljs-keyword">return</span> tmp;<br>&#125;<br><br><span class="hljs-type">bool</span> <span class="hljs-title function_">containsNearbyDuplicate</span><span class="hljs-params">(<span class="hljs-type">int</span>* nums, <span class="hljs-type">int</span> numsSize, <span class="hljs-type">int</span> k)</span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTable</span>* <span class="hljs-title">set</span> =</span> <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numsSize; i++)&#123;<br>        <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTable</span>* <span class="hljs-title">tmp</span> =</span> findItem(&amp;<span class="hljs-built_in">set</span>, nums[i]);<br>        <span class="hljs-keyword">if</span>(tmp != <span class="hljs-literal">NULL</span> &amp;&amp; i - tmp-&gt;val &lt;= k )&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        addItem(&amp;<span class="hljs-built_in">set</span>, nums[i], i);    <br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="定义结构体"><a href="#定义结构体" class="headerlink" title="定义结构体"></a>定义结构体</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta"># <span class="hljs-keyword">include</span> <span class="hljs-string">&quot;uthash.h&quot;</span></span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTable</span>&#123;</span><br>    <span class="hljs-type">int</span> key;<br>    <span class="hljs-type">int</span> val;<br>    UT_hash_handle hh;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTable</span>* <span class="hljs-title">set</span> =</span> <span class="hljs-literal">NULL</span>; <span class="hljs-comment">//声明哈希为NULL指针</span><br></code></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">addItem</span><span class="hljs-params">(<span class="hljs-type">int</span> id, <span class="hljs-type">int</span> num)</span>&#123;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTbale</span>* <span class="hljs-title">tmp</span>;</span><br>   	<span class="hljs-comment">//重复性检查</span><br>    HASH_FIND_INT(SET, &amp;id, tmp);<br>    <span class="hljs-keyword">if</span>(tmp == <span class="hljs-literal">NULL</span>)&#123;<br>        tmp = (<span class="hljs-keyword">struct</span> hashTable*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> *tmp);<br>        tmp-&gt;key = id;<br>        tmp-&gt;val = num;<br>        <span class="hljs-comment">//第一个参数为哈希表，第二个参数为哈希表key，第三个参数指向要添加的结构的指针</span><br>        HASH_ADD_INT(<span class="hljs-built_in">set</span>, id, tmp);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">struct</span> hashTable* <span class="hljs-title function_">find_id</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">hashTable</span>* <span class="hljs-title">tmp</span>;</span><br>    <span class="hljs-comment">//第一个参数为哈希表，第二个参数为id的地址，第三个参数为输出变量，找到则tmp返回对应键值，否则返回NULL;</span><br>    HASH_FIND_INT(<span class="hljs-built_in">set</span>, &amp;id, tmp);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="排序哈希表"><a href="#排序哈希表" class="headerlink" title="排序哈希表"></a>排序哈希表</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c">HASH_SORT(<span class="hljs-built_in">set</span>, compare);<br><span class="hljs-comment">//name_sort为比较函数的指针</span><br><br><span class="hljs-comment">//比较函数</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(<span class="hljs-type">void</span> *a, <span class="hljs-type">void</span> *b)</span><br>&#123;<br>    Hash *aa = (Hash*)a;<br>    Hash *bb = (Hash*)b;<br>    <span class="hljs-keyword">return</span> bb-&gt;val - aa-&gt;val;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                  </div>
                 
               </div>
               
@@ -278,9 +287,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/03/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/">
+                      <a href="/2022/03/28/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C%E9%97%AE%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">测试文章</span>
+                        <span class="hidden-mobile">最大子序列和问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
