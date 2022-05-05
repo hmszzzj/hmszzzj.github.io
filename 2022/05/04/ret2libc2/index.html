@@ -16,12 +16,12 @@
   <meta name="author" content="Hongmiaosheng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目分析1、静态分析 ​		*当前程序为32位   ​		*溢出点为gets()函数   ​		*仅开启栈不可执行   *存在system函数以及‘&#x2F;bin&#x2F;sh’字符串     2、动态分析 ​		*判断溢出点偏移位置 ​		a、随机生成长度200的字符串   ​		b、利用gdb调试工具打开文件，并在main函数处设置断点     ​		c、输入字符串，获取溢出偏移量">
+    <meta name="description" content="¶题目分析 1、静态分析 ​		*当前程序为32位  ​		*溢出点为gets()函数  ​		*仅开启栈不可执行  *存在system函数以及‘&#x2F;bin&#x2F;sh’字符串   2、动态分析 ​		*判断溢出点偏移位置 ​		a、随机生成长度200的字符串  ​		b、利用gdb调试工具打开文件，并在main函数处设置断点   ​		c、输入字符串，获取溢出偏移量   3、攻击代码  4、成功获得系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ret2libc2">
 <meta property="og:url" content="http://example.com/2022/05/04/ret2libc2/index.html">
 <meta property="og:site_name" content="Hi~热心网友小洪">
-<meta property="og:description" content="题目分析1、静态分析 ​		*当前程序为32位   ​		*溢出点为gets()函数   ​		*仅开启栈不可执行   *存在system函数以及‘&#x2F;bin&#x2F;sh’字符串     2、动态分析 ​		*判断溢出点偏移位置 ​		a、随机生成长度200的字符串   ​		b、利用gdb调试工具打开文件，并在main函数处设置断点     ​		c、输入字符串，获取溢出偏移量">
+<meta property="og:description" content="¶题目分析 1、静态分析 ​		*当前程序为32位  ​		*溢出点为gets()函数  ​		*仅开启栈不可执行  *存在system函数以及‘&#x2F;bin&#x2F;sh’字符串   2、动态分析 ​		*判断溢出点偏移位置 ​		a、随机生成长度200的字符串  ​		b、利用gdb调试工具打开文件，并在main函数处设置断点   ​		c、输入字符串，获取溢出偏移量   3、攻击代码  4、成功获得系统">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/05/04/ret2libc2/image-20220503104357552.png">
 <meta property="og:image" content="http://example.com/2022/05/04/ret2libc2/image-20220503104501626.png">
@@ -210,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      174 字
+      165 字
     </span>
   
 
@@ -259,39 +259,29 @@
             <h1 style="display: none">ret2libc2</h1>
             
             <div class="markdown-body">
-              <h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>1、静态分析</p>
+              <h4 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h4>
+<p>1、静态分析</p>
 <p>​		*当前程序为32位</p>
 <img src="/2022/05/04/ret2libc2/image-20220503104357552.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503104357552">
-
 <p>​		*溢出点为gets()函数</p>
 <img src="/2022/05/04/ret2libc2/image-20220503104501626.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503104501626">
-
 <p>​		*仅开启栈不可执行</p>
 <img src="/2022/05/04/ret2libc2/image-20220503104550249.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503104550249">
-
-<p>*存在system函数以及‘&#x2F;bin&#x2F;sh’字符串</p>
+<p>*存在system函数以及‘/bin/sh’字符串</p>
 <img src="/2022/05/04/ret2libc2/image-20220503104810343.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503104810343">
-
 <img src="/2022/05/04/ret2libc2/image-20220503104853849.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503104853849">
-
 <p>2、动态分析</p>
 <p>​		*判断溢出点偏移位置</p>
 <p>​		a、随机生成长度200的字符串</p>
 <img src="/2022/05/04/ret2libc2/image-20220503105138710.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503105138710">
-
 <p>​		b、利用gdb调试工具打开文件，并在main函数处设置断点</p>
 <img src="/2022/05/04/ret2libc2/image-20220503105410156.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503105410156">
-
 <img src="/2022/05/04/ret2libc2/image-20220503105508276.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503105508276">
-
 <p>​		c、输入字符串，获取溢出偏移量</p>
 <img src="/2022/05/04/ret2libc2/image-20220503105557402.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503105557402">
-
 <img src="/2022/05/04/ret2libc2/image-20220503105648719.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503105648719">
-
 <p>3、攻击代码</p>
 <img src="/2022/05/04/ret2libc2/image-20220503105825397.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503105825397">
-
 <p>4、成功获得系统权限</p>
 <img src="/2022/05/04/ret2libc2/image-20220503105926085.png" srcset="/img/loading.gif" lazyload class="" title="image-20220503105926085">
 

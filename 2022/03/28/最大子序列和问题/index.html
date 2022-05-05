@@ -16,12 +16,12 @@
   <meta name="author" content="Hongmiaosheng">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最大子序列和问题给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。子数组 是数组中的一个连续部分。 动态规划dp最重要的思想就是 利用上一个状态，对于此题来讲就是是否加上上一个状态f(i-1)假设nums数组长度为n，下标从0到n-1，f(i)表示以第i个数结尾的连续子数组最大和，因此最终所求解为 max{f(i)}**如何求f(i)?**，">
+    <meta name="description" content="¶最大子序列和问题 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 子数组 是数组中的一个连续部分。 ¶动态规划 dp最重要的思想就是 利用上一个状态，对于此题来讲就是是否加上上一个状态f(i-1) 假设nums数组长度为n，下标从0到n-1，f(i)表示以第i个数结尾的连续子数组最大和，因此最终所求解为 max{f(i)} 如何求f(i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最大子序列和问题">
 <meta property="og:url" content="http://example.com/2022/03/28/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Hi~热心网友小洪">
-<meta property="og:description" content="最大子序列和问题给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。子数组 是数组中的一个连续部分。 动态规划dp最重要的思想就是 利用上一个状态，对于此题来讲就是是否加上上一个状态f(i-1)假设nums数组长度为n，下标从0到n-1，f(i)表示以第i个数结尾的连续子数组最大和，因此最终所求解为 max{f(i)}**如何求f(i)?**，">
+<meta property="og:description" content="¶最大子序列和问题 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 子数组 是数组中的一个连续部分。 ¶动态规划 dp最重要的思想就是 利用上一个状态，对于此题来讲就是是否加上上一个状态f(i-1) 假设nums数组长度为n，下标从0到n-1，f(i)表示以第i个数结尾的连续子数组最大和，因此最终所求解为 max{f(i)} 如何求f(i">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-28T06:49:55.000Z">
 <meta property="article:modified_time" content="2022-05-04T02:26:33.220Z">
@@ -246,19 +246,22 @@
             <h1 style="display: none">最大子序列和问题</h1>
             
             <div class="markdown-body">
-              <h2 id="最大子序列和问题"><a href="#最大子序列和问题" class="headerlink" title="最大子序列和问题"></a>最大子序列和问题</h2><p>给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。<br>子数组 是数组中的一个连续部分。</p>
-<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>dp最重要的思想就是 <strong>利用上一个状态</strong>，对于此题来讲就是<strong>是否加上上一个状态f(i-1)</strong><br>假设nums数组长度为n，下标从0到n-1，<strong>f(i)表示以第i个数结尾的连续子数组最大和</strong>，因此最终所求解为 max{f(i)}<br>**如何求f(i)?**，可以考虑num[i]单独成一段，还是加入f(i-1)，因此f(i) &#x3D; max(nums[i], f(i-1) + nums[i]),</p>
+              <h2 id="最大子序列和问题"><a class="header-anchor" href="#最大子序列和问题">¶</a>最大子序列和问题</h2>
+<p>给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。<br>
+子数组 是数组中的一个连续部分。</p>
+<h3 id="动态规划"><a class="header-anchor" href="#动态规划">¶</a>动态规划</h3>
+<p>dp最重要的思想就是 <strong>利用上一个状态</strong>，对于此题来讲就是<strong>是否加上上一个状态f(i-1)</strong><br>
+假设nums数组长度为n，下标从0到n-1，<strong>f(i)表示以第i个数结尾的连续子数组最大和</strong>，因此最终所求解为 max{f(i)}<br>
+<strong>如何求f(i)?</strong>，可以考虑num[i]单独成一段，还是加入f(i-1)，因此f(i) = max(nums[i], f(i-1) + nums[i]),</p>
 <p>代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">maxSubArray</span><span class="hljs-params">(<span class="hljs-type">int</span>* nums, <span class="hljs-type">int</span> numsSize)</span>&#123;<br>    <span class="hljs-type">int</span> preSum = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> maxAns = nums[<span class="hljs-number">0</span>];<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numsSize; i ++)&#123;<br>        preSum = fmax(preSum + nums[i], nums[i]);<br>        maxAns = fmax(preSum, maxAns);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> maxAns;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><p> 贪心的思想是<strong>从左向右迭代, 一个个数字加过去如果sum&lt;0, 那说明加上它只会变得越来越小, 所以我们将sum置零后重新开始找子序串</strong>，需要<strong>用maxAns来不断维持当前的最大子序和</strong></p>
+<h3 id="贪心算法"><a class="header-anchor" href="#贪心算法">¶</a>贪心算法</h3>
+<p>贪心的思想是<strong>从左向右迭代, 一个个数字加过去如果sum&lt;0, 那说明加上它只会变得越来越小, 所以我们将sum置零后重新开始找子序串</strong>，需要<strong>用maxAns来不断维持当前的最大子序和</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:<br>    def <span class="hljs-title function_">maxSubAray</span><span class="hljs-params">(self, nums: List[<span class="hljs-type">int</span>])</span> -&gt; <span class="hljs-type">int</span>:<br>        # 类似寻找最大最小值的题目,初始值一定要定义成理论上的最小最大值<br>        result = <span class="hljs-type">float</span>(<span class="hljs-string">&quot;-inf&quot;</span>)<br>        numsSize = len(nums)<br>        sum = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i in <span class="hljs-title function_">range</span><span class="hljs-params">(numsSize)</span>:<br>            sum += nums[i]<br>            result = max(result, sum)<br>            # 如果sum &lt; <span class="hljs-number">0</span>,重新开始找子序串<br>            <span class="hljs-keyword">if</span> (sum &lt; <span class="hljs-number">0</span>):<br>                sum = <span class="hljs-number">0</span><br>                    <br>        <span class="hljs-keyword">return</span> result<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="分治法"><a href="#分治法" class="headerlink" title="分治法"></a>分治法</h3><p>类似于<strong>线段树求解最长公共上升子序列问题的pushUP操作</strong></p>
+<h3 id="分治法"><a class="header-anchor" href="#分治法">¶</a>分治法</h3>
+<p>类似于<strong>线段树求解最长公共上升子序列问题的pushUP操作</strong></p>
 <p>定义一个操作get(a, l, r)表示查询a序列[l, r]区间内的最大子段和，因此最终的答案为get(nums, 0, numsSize - 1)</p>
-<p>对于一个区间[l, r]，去m &#x3D; (l + r) &#x2F; 2，对区间[l,m]，[m+1, r]分治求解，当递归逐层深入直到区间长度缩小为1时候，递归开始回升。</p>
+<p>对于一个区间[l, r]，去m = (l + r) / 2，对区间[l,m]，[m+1, r]分治求解，当递归逐层深入直到区间长度缩小为1时候，递归开始回升。</p>
 <p><strong>维护区间哪些信息？</strong></p>
 <p>对于[l, r]可以维护以下四个量：</p>
 <p>lSum: 以l为左端点的最大子段和</p>
@@ -273,11 +276,6 @@
 <p>mSum: <strong>考虑是否跨m</strong>，不跨m，则取两个子区间中mSum中的的一个，跨m，则取左子区间rSum和右子区间lSum的和，取三者间大者</p>
 <p>代码如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Status</span> &#123;</span><br>    <span class="hljs-type">int</span> lSum, rSum, mSum, iSum;<br>&#125;; <span class="hljs-comment">//定义区间信息数据结构</span><br><br><span class="hljs-keyword">struct</span> Status <span class="hljs-title function_">pushUp</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> Status l, <span class="hljs-keyword">struct</span> Status r)</span> &#123;<br>    <span class="hljs-type">int</span> iSum = l.iSum + r.iSum;<br>    <span class="hljs-type">int</span> lSum = fmax(l.lSum, l.iSum + r.lSum);<br>    <span class="hljs-type">int</span> rSum = fmax(r.rSum, r.iSum + l.rSum);<br>    <span class="hljs-type">int</span> mSum = fmax(fmax(l.mSum, r.mSum), l.rSum + r.lSum);<br>    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">struct</span> Status)&#123;lSum, rSum, mSum, iSum&#125;;<br>&#125;; <span class="hljs-comment">//左右两子区间合并</span><br><br><span class="hljs-keyword">struct</span> Status <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span>* a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;<br>    <span class="hljs-keyword">if</span> (l == r) &#123;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">struct</span> Status)&#123;a[l], a[l], a[l], a[l]&#125;;<br>    &#125;<br>    <span class="hljs-type">int</span> m = (l + r) &gt;&gt; <span class="hljs-number">1</span>;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Status</span> <span class="hljs-title">lSub</span> =</span> get(a, l, m);<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Status</span> <span class="hljs-title">rSub</span> =</span> get(a, m + <span class="hljs-number">1</span>, r);<br>    <span class="hljs-keyword">return</span> pushUp(lSub, rSub);<br>&#125; <span class="hljs-comment">//逐步递归，再回升</span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">maxSubArray</span><span class="hljs-params">(<span class="hljs-type">int</span>* nums, <span class="hljs-type">int</span> numsSize)</span> &#123;<br>    <span class="hljs-keyword">return</span> get(nums, <span class="hljs-number">0</span>, numsSize - <span class="hljs-number">1</span>).mSum;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-
-
 
             </div>
             <hr>
